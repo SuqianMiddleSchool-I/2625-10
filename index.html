@@ -1,1 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宿秀一技 · 草纸乡土记忆馆 | 蔡集手抄草纸家乡文化调查</title>
+<style>
+/* SECTION: base */
+:root{
+  --paper:#F9F8F4; --paper2:#F4F1EA; --ink:#2D3A31; --ink-soft:#5A6B5E;
+  --sage:#8C9A84; --clay:#C27B66; --clay-soft:#DCCFC2; --line:#E8E4D9; --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Microsoft YaHei","微软雅黑",sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+.serif{font-family:"STZhongsong","华文中宋","SimSun","宋体",serif}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+h2.sec-title{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:clamp(26px,4vw,38px);letter-spacing:2px;margin-bottom:8px}
+.sec-kicker{color:var(--clay);font-size:13px;letter-spacing:4px;margin-bottom:14px}
+.sec-rule{width:56px;height:3px;background:var(--clay);border-radius:2px;margin:18px 0 34px}
+.note-soft{color:var(--ink-soft);font-size:14px}
+/* SECTION: progress & nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--clay);z-index:99}
+nav{position:sticky;top:0;z-index:90;background:rgba(249,248,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1080px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.nav-logo{font-family:"STZhongsong","华文中宋","SimSun",serif;font-weight:700;font-size:19px;letter-spacing:3px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav-logo em{font-style:normal;color:var(--clay)}
+.nav-links{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto}
+.nav-links a{font-size:13px;color:var(--ink-soft);text-decoration:none;padding:6px 11px;border-radius:16px;transition:.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{background:var(--ink);color:var(--paper)}
+/* SECTION: hero */
+#hero{position:relative;padding:0;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;min-height:520px}
+.hero-text{padding:88px 44px 72px 0;display:flex;flex-direction:column;justify-content:center;max-width:1080px;margin:0 auto;width:100%}
+.hero-badge{display:inline-block;background:var(--ink);color:var(--paper);font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:14px;letter-spacing:5px;padding:7px 20px;border-radius:20px;margin-bottom:26px;width:fit-content}
+.hero-kicker{color:var(--clay);letter-spacing:3px;font-size:14px;margin-bottom:16px}
+#hero h1{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:clamp(32px,5vw,52px);line-height:1.3;letter-spacing:2px;margin-bottom:14px}
+#hero h1 .hl{color:var(--clay)}
+.hero-sub{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:clamp(16px,2.2vw,21px);color:var(--ink-soft);margin-bottom:30px}
+.hero-meta{display:flex;gap:26px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
+.hero-meta b{color:var(--ink);font-size:17px;font-family:"STZhongsong","华文中宋","SimSun",serif}
+.hero-img{position:relative;background:var(--paper2);overflow:hidden;min-height:320px}
+.hero-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(45,58,49,.72));color:var(--paper);font-size:12px;padding:26px 14px 10px;text-align:center}
+/* SECTION: cards & quotes */
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px 28px;box-shadow:0 6px 18px rgba(45,58,49,.05)}
+.quote-block{background:var(--paper2);border-left:4px solid var(--clay);border-radius:0 14px 14px 0;padding:20px 24px;font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:17px;line-height:2}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.gap-lg{gap:34px}
+.tag{display:inline-block;font-size:12px;letter-spacing:2px;color:var(--sage);border:1px solid var(--sage);border-radius:12px;padding:2px 12px;margin-bottom:12px}
+/* SECTION: glossary */
+.gloss{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.gloss span{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:6px 14px;font-size:13px;color:var(--ink-soft)}
+.gloss b{font-family:"STZhongsong","华文中宋","SimSun",serif;color:var(--ink);font-size:15px}
+/* SECTION: interview */
+.person{display:flex;gap:18px;align-items:flex-start}
+.person .avatar{flex:none;width:58px;height:58px;border-radius:50%;background:var(--sage);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:22px}
+ul.dots{list-style:none}
+ul.dots li{position:relative;padding-left:20px;margin:10px 0;font-size:15px}
+ul.dots li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--sage)}
+.imgframe{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 20px rgba(45,58,49,.08);position:relative;background:var(--paper2)}
+.imgframe img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.imgframe figcaption{font-size:12px;color:var(--ink-soft);text-align:center;padding:9px 8px;background:var(--white);border-top:1px solid var(--line)}
+/* SECTION: craft steps */
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:8px}
+.step{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:.25s;user-select:none}
+.step:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(45,58,49,.1)}
+.step .no{width:38px;height:38px;border-radius:50%;margin:0 auto 10px;background:var(--paper2);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:17px;border:1px solid var(--line)}
+.step.on .no{background:var(--clay);color:var(--paper);border-color:var(--clay)}
+.step h4{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:16px;letter-spacing:2px}
+#stepDetail{margin-top:22px;border-top:1px dashed var(--clay-soft);padding-top:20px;min-height:86px}
+#stepDetail h5{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:18px;color:var(--clay);margin-bottom:6px}
+#stepDetail p{font-size:14.5px;color:var(--ink-soft)}
+/* SECTION: stats */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.stat{background:var(--white);border:1px solid var(--line);border-top:4px solid var(--sage);border-radius:16px;padding:20px 12px;text-align:center}
+.stat.hot{border-top-color:var(--clay)}
+.stat .num{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:clamp(30px,3.6vw,44px);font-weight:700;line-height:1.15}
+.stat.hot .num{color:var(--clay)}
+.stat .unit{font-size:13px;color:var(--ink-soft)}
+.stat .cap{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+.mock-badge{display:inline-block;background:var(--clay-soft);color:var(--ink);font-size:11px;border-radius:10px;padding:1px 9px;margin-left:6px;vertical-align:2px}
+/* SECTION: compare */
+.vs-wrap{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;align-items:stretch}
+.vs-side{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 6px 18px rgba(45,58,49,.05)}
+.vs-side.dim{background:var(--paper2)}
+.vs-mid{display:flex;align-items:center;justify-content:center}
+.vs-mid span{width:48px;height:48px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:"STZhongsong","华文中宋","SimSun",serif;font-weight:700;font-size:16px;border:3px solid var(--paper)}
+.vs-side img{border-radius:12px;aspect-ratio:16/10;object-fit:cover;margin-bottom:14px}
+.vs-side h4{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:19px;margin-bottom:2px}
+.vs-side h4.warn{color:var(--clay)}
+/* SECTION: timeline */
+.tl{list-style:none;border-left:2px solid var(--clay-soft);margin-left:8px;padding-left:26px}
+.tl li{position:relative;margin-bottom:22px}
+.tl li::before{content:"";position:absolute;left:-33px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--white);border:3px solid var(--sage)}
+.tl .t{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:16px;color:var(--ink);font-weight:700}
+.tl p{font-size:14px;color:var(--ink-soft)}
+.tl a{color:var(--clay)}
+/* SECTION: masters */
+.masters{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.master{border-radius:18px;padding:26px 24px;background:var(--white);border:1px solid var(--line)}
+.master.dark{background:var(--ink);color:var(--paper)}
+.master .who{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.master .who .avatar{width:46px;height:46px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:19px;color:var(--paper)}
+.master.dark .who .avatar{background:var(--clay)}
+.master .who b{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:17px}
+.master .who small{display:block;font-size:11.5px;color:var(--sage)}
+.master.dark .who small{color:var(--clay-soft)}
+.master blockquote{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:15px;line-height:1.9;margin-bottom:12px}
+.master .read{font-size:13px;color:var(--ink-soft);line-height:1.7}
+.master.dark .read{color:var(--clay-soft)}
+/* SECTION: advice */
+.advice{display:grid;gap:16px}
+.advice .row{display:grid;grid-template-columns:64px 1fr;gap:18px;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px 24px;align-items:flex-start}
+.advice .zh{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:21px;font-weight:700}
+.advice .row:nth-child(3) .zh{background:var(--clay)}
+.advice h4{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:18px;margin-bottom:4px}
+.advice p{font-size:14px;color:var(--ink-soft)}
+.advice .basis{font-size:12px;color:var(--sage);margin-top:6px}
+/* SECTION: ending */
+#ending{background:var(--ink);color:var(--paper);text-align:center;padding:96px 0 84px}
+#ending .poem{font-family:"STZhongsong","华文中宋","SimSun",serif;font-size:clamp(19px,2.8vw,26px);line-height:2.2;letter-spacing:2px}
+#ending .poem em{font-style:normal;color:var(--clay-soft)}
+#ending .thanks{margin-top:36px;display:inline-block;border:1px solid var(--clay-soft);border-radius:22px;padding:8px 30px;letter-spacing:6px;font-family:"STZhongsong","华文中宋","SimSun",serif}
+footer{background:var(--ink);color:var(--sage);text-align:center;font-size:12px;padding:0 0 26px;letter-spacing:1px}
+/* SECTION: responsive */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-text{padding:56px 0 30px}
+  .hero-img{min-height:280px}
+  .two-col{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats .stat:last-child{grid-column:1/-1}
+  .vs-wrap{grid-template-columns:1fr}
+  .vs-mid{padding:10px 0}
+  .masters{grid-template-columns:1fr}
+  .advice .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
 
+<!-- SECTION: nav -->
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="#hero">宿秀<em>一技</em></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#source">古籍溯源</a>
+      <a href="#interview">采访实录</a>
+      <a href="#craft">古法工艺</a>
+      <a href="#status">现状数据</a>
+      <a href="#compare">对照观察</a>
+      <a href="#protect">保护复盘</a>
+      <a href="#think">名家思辨</a>
+      <a href="#advice">少年建议</a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION: hero -->
+<header id="hero">
+  <div class="hero-grid wrap">
+    <div class="hero-text">
+      <span class="hero-badge">宿 秀 一 技</span>
+      <p class="hero-kicker">综合性学习 · 家乡非物质文化遗产实地调研</p>
+      <h1>正史<span class="hl">失语</span>，野草<span class="hl">存文</span></h1>
+      <p class="hero-sub">——蔡集古法手抄草纸的乡土存续与当代反思</p>
+      <div class="hero-meta">
+        <span><b>200+</b> 年传承史</span>
+        <span><b>1</b> 户存续作坊</span>
+        <span><b>100</b> 道古法工序</span>
+        <span><b>0</b> 条官史记载</span>
+      </div>
+    </div>
+    <figure class="hero-img">
+      <img data-image="https://agent.qianwen.com/service/e06c875a-21cd-45/9d1ac07c3ccb64c5d6136c4e37c1ce90" alt="蔡集手抄草纸作坊内工匠抄纸场景" onload="this.style.opacity=1" onerror="this.parentElement.classList.add('img-fallback')">
+      <figcaption>宿迁市宿城区蔡集镇刘庄村 · 手抄草纸作坊（资料图片）</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<!-- SECTION: source -->
+<section id="source">
+  <div class="wrap">
+    <p class="sec-kicker">壹 · 古籍溯源</p>
+    <h2 class="sec-title">两百年有证可查，两百年无一字入史</h2>
+    <div class="sec-rule"></div>
+    <div class="two-col gap-lg">
+      <div>
+        <div class="quote-block">《蔡集镇志》：蔡集手抄草纸，肇于清康熙间。蔡伦裔孙蔡祖望自湘迁宿，居蔡集刘庄，传抄纸之术。取麦草、蒲花、树皮沤浸，历百有余工，漉帘成纸，贴白垩墙曝干。上世纪七十年代，乡民千余户，农隙为之，货用于祭祀、炮仗内衬、粗包装。今唯张氏家作坊尚存，技艺濒危。</div>
+        <div class="gloss">
+          <span><b>垩 è</b> 白土，刷墙贴湿纸晒干用</span>
+          <span><b>漉 lù</b> 滤纸浆成湿纸</span>
+          <span><b>沤 òu</b> 长时间浸泡草料</span>
+          <span><b>舂 chōng</b> 石碾捶打纤维</span>
+          <span><b>徙 xǐ</b> 迁居</span>
+          <span><b>濒 bīn</b> 濒临</span>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="height:100%">
+          <span class="tag">口述与谚语佐证</span>
+          <div class="quote-block" style="margin-bottom:16px">“清水池朝朝进宝<br>白粉墙日日贴金”</div>
+          <p class="note-soft">流传两百年的本地谚语，说的正是抄纸场景：清水池里捞纸，白粉墙上贴金。口述谱系称蔡伦第五十九世侄孙蔡祖望于清康熙间徙居刘庄村，携造纸之艺而来，世代口传手授。</p>
+          <p style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--clay-soft)"><b>关键矛盾：</b>技艺流传两百年、深刻影响百姓生活，历代官修《宿迁县志》竟<b style="color:var(--clay)">无一处记载</b>。</p>
+        </div>
+      </div>
+    </div>
+    <p class="card" style="margin-top:26px;background:var(--ink);color:var(--paper);border:none">官方正史只记录权力与大事，底层百姓的农耕手艺被系统性忽略、默认失语——我们调研的第一步，就是<b style="color:var(--clay-soft)">补全官方史书缺失的民间乡土史</b>。</p>
+  </div>
+</section>
+
+<!-- SECTION: interview -->
+<section id="interview" style="background:var(--paper2)">
+  <div class="wrap">
+    <p class="sec-kicker">贰 · 田野实证</p>
+    <h2 class="sec-title">文献是冰冷的历史，口述是活着的历史</h2>
+    <div class="sec-rule"></div>
+    <div class="two-col gap-lg">
+      <div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="person">
+            <div class="avatar">张</div>
+            <div><b>张成德 · 江苏省省级非物质文化遗产代表性传承人</b>
+            <p class="note-soft">据 2021 年宿迁文明网报道，时年 88 岁，与儿媳史本荣同坊操作。</p></div>
+          </div>
+          <div class="person" style="margin-top:16px">
+            <div class="avatar" style="background:var(--clay)">史</div>
+            <div><b>史本荣 · 张家长媳，全镇唯一存续作坊的操帘人</b>
+            <p class="note-soft">不足十平方米的小房里，一帘两纸，轻轻一掀、快速一刷。</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <b style="font-family:'STZhongsong','华文中宋',serif">口述要点</b>
+          <ul class="dots">
+            <li>鼎盛记忆：七十年代全镇近一千户农闲造纸，所造“蔡侯纸”远近闻名；</li>
+            <li>衰落转折：机器纸廉价冲击，祭祀与包装市场萎缩，年轻人无一学艺；</li>
+            <li>坚守现状：至今全镇仅张氏一家作坊仍在开帘抄纸，无一名年轻学徒。</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <figure class="imgframe">
+          <img data-image="https://agent.qianwen.com/service/e06c875a-21cd-45/cbc16c75010441373fa567ce5dcde3e8" alt="工匠在水槽前用竹帘抄纸" onerror="this.style.display='none'">
+          <figcaption>水槽前抄纸的传承人（资料图片）</figcaption>
+        </figure>
+        <p class="card" style="margin-top:20px;background:var(--white)"><b style="color:var(--clay)">双向互证：</b>镇志“肇于康熙”与口述“蔡伦五十九世孙迁宿”两个独立信源相互印证——老人的记忆，还原了正史缺席的民间现场。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: craft -->
+<section id="craft">
+  <div class="wrap">
+    <p class="sec-kicker">叁 · 古法工艺</p>
+    <h2 class="sec-title">百道工序，是对天时水土的耐心应答</h2>
+    <div class="sec-rule"></div>
+    <div class="steps" id="steps" role="tablist" aria-label="古法工序"></div>
+    <div id="stepDetail" aria-live="polite"></div>
+    <div class="two-col" style="margin-top:30px">
+      <div class="card" style="background:var(--ink);color:var(--paper);border:none">
+        <p class="sec-kicker" style="margin-bottom:8px">独家设问</p>
+        <p style="font-family:'STZhongsong','华文中宋',serif;font-size:18px;line-height:1.8">机器造纸三分钟出一张纸，为什么复刻不了这套延续两百年的手工体系？</p>
+        <p class="note-soft" style="color:var(--clay-soft);margin-top:12px">百道慢工序的背后，是古人顺应天时、水土、季节的农耕智慧——手艺不只是技术，更是生活哲学、生存节奏与乡土秩序。</p>
+      </div>
+      <figure class="imgframe">
+        <img data-image="https://agent.qianwen.com/service/e06c875a-21cd-45/d0accd42b5425ded3176310c5ad0db9e" alt="晾晒中的手抄草纸" onerror="this.style.display='none'">
+        <figcaption>白垩墙贴纸日曝（资料图片）</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: status -->
+<section id="status" style="background:var(--paper2)">
+  <div class="wrap">
+    <p class="sec-kicker">肆 · 现状调研</p>
+    <h2 class="sec-title">一组数字，一门技艺的生存画像</h2>
+    <div class="sec-rule"></div>
+    <div class="stats">
+      <div class="stat hot"><div class="num">1</div><div class="unit">户</div><div class="cap">全镇仅存的张氏家庭作坊</div></div>
+      <div class="stat"><div class="num">59</div><div class="unit">世</div><div class="cap">相传为蔡伦第五十九世侄孙一脉传入</div></div>
+      <div class="stat"><div class="num">1000</div><div class="unit">户</div><div class="cap">上世纪七十年代农闲造纸副业户</div></div>
+      <div class="stat"><div class="num">100</div><div class="unit">道</div><div class="cap">古法全流程工序，无成文图谱</div></div>
+      <div class="stat hot"><div class="num">0</div><div class="unit">条</div><div class="cap">历代官修《宿迁县志》相关记载</div></div>
+    </div>
+    <div class="card" style="margin-top:24px">
+      <b style="font-family:'STZhongsong','华文中宋',serif">小组问卷抽样<span class="mock-badge">示例数据 · 待替换为本组实际统计</span></b>
+      <div class="stats" style="grid-template-columns:repeat(4,1fr);margin-top:16px">
+        <div class="stat" style="border:none;background:var(--paper2)"><div class="num" style="font-size:30px">62%</div><div class="cap">受访者从未听说过蔡集草纸</div></div>
+        <div class="stat" style="border:none;background:var(--paper2)"><div class="num" style="font-size:30px">81%</div><div class="cap">体验研学的学生表示“愿意再来”</div></div>
+        <div class="stat" style="border:none;background:var(--paper2)"><div class="num" style="font-size:30px">120</div><div class="cap">本组发放并回收的问卷（示例份数）</div></div>
+        <div class="stat" style="border:none;background:var(--paper2)"><div class="num" style="font-size:30px">3</div><div class="cap">本组实地走访记录的作坊与旧址</div></div>
+      </div>
+      <p class="note-soft" style="margin-top:14px;font-size:12.5px">注：作坊、传承人、工序、补助等数字均来自文献与实地核实；问卷区数值为示例口径。</p>
+    </div>
+    <div class="card" style="margin-top:20px;background:var(--ink);color:var(--paper);border:none;text-align:center">
+      官方定性：江苏省省级非遗 · 《宿迁市大运河文化遗产保护条例》列入<b style="color:var(--clay-soft)">濒危项目抢救性保护</b>
+    </div>
+    <div class="quote-block" style="margin-top:26px;text-align:center;font-size:clamp(18px,2.6vw,24px)">
+      政府已完整存档、影像永久保存、法律明令抢救——技艺为何依旧极速濒危？<br>
+      <b style="color:var(--clay)">存档 = 保护吗？ 记录 = 传承吗？ 标本留存 = 文化活着吗？</b>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: compare -->
+<section id="compare">
+  <div class="wrap">
+    <p class="sec-kicker">伍 · 横向对照</p>
+    <h2 class="sec-title">同邑异命：为什么甜油兴盛，草纸衰败？</h2>
+    <div class="sec-rule"></div>
+    <div class="vs-wrap">
+      <div class="vs-side">
+        <img data-image="https://agent.qianwen.com/service/f3458f06-d157-45/e87d02a3388380794704d17001423282" alt="宿迁甜油陶缸酿造" onerror="this.style.display='none'">
+        <h4>宿迁甜油 · 兴盛</h4>
+        <p class="note-soft" style="margin-bottom:10px">始于唐，1500 年酿造史</p>
+        <ul class="dots">
+          <li>2010 年列市级非遗，2023 年晋升省级；</li>
+          <li>“三园”老字号产业化运营，获属地扶持新开门店；</li>
+          <li>至今仍是餐桌刚需——贴近现代生活。</li>
+        </ul>
+      </div>
+      <div class="vs-mid"><span>VS</span></div>
+      <div class="vs-side dim">
+        <img data-image="https://agent.qianwen.com/service/e06c875a-21cd-45/9db8982c7007427abaaebeabd9cd21cb" alt="蔡集手抄草纸成品" onerror="this.style.display='none'">
+        <h4 class="warn">蔡集草纸 · 濒危</h4>
+        <p class="note-soft" style="margin-bottom:10px">肇于清康熙，200 余年传承</p>
+        <ul class="dots">
+          <li>省级非遗，却列入濒危抢救性保护名录；</li>
+          <li>祭祀与包装市场整体消亡，无产可售；</li>
+          <li>仅一户作坊坚守——脱离了当代生活。</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-style:italic;color:var(--clay)">更深一问：当代社会评判非遗存亡的标准，难道只剩“商业价值”？无利可图的乡土手艺，就不配被时代保留吗？</p>
+    <p class="card" style="margin-top:14px;background:var(--ink);color:var(--paper);border:none;text-align:center">非遗的凋零，不止是一门手艺的消失，更是乡土农耕文明审美与耐心的退场。</p>
+  </div>
+</section>
+
+<!-- SECTION: protect -->
+<section id="protect" style="background:var(--paper2)">
+  <div class="wrap">
+    <p class="sec-kicker">陆 · 官方保护与复盘</p>
+    <h2 class="sec-title">我们完成了“保存标本”，却没有救活“生命”</h2>
+    <div class="sec-rule"></div>
+    <div class="two-col gap-lg">
+      <div>
+        <b style="font-family:'STZhongsong','华文中宋',serif;color:var(--sage);letter-spacing:2px">官方措施（客观陈列）</b>
+        <ul class="tl" style="margin-top:18px">
+          <li><div class="t">2016 · 抢救记录</div><p>完成全套数字化录像存档，工序影像永久保存。</p></li>
+          <li><div class="t">2021 · 制度入列</div><p>《宿迁市大运河文化遗产保护条例》将蔡集手抄草纸技艺列入濒危项目，实施抢救性保护。<a href="http://www.sqsc.gov.cn/scqwgxj/zcfg/202107/f5fc1d65a361472f99832232adce4079.shtml" target="_blank" rel="noopener">查看宿城区政府相关文件 →</a></p></li>
+          <li><div class="t">2022 · 专项补助</div><p>获省级非遗代表性项目补助 5 万元（申报单位：宿迁市宿城区文化馆），用于建立传承基地、组织研学、媒体宣传。</p></li>
+          <li><div class="t">2023 · 研学落地</div><p>蔡集镇牛角村省级非遗传承基地开放，中小学生周末体验手抄纸制作。</p></li>
+        </ul>
+      </div>
+      <div>
+        <figure class="imgframe">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="" style="display:none">
+          <div style="padding:22px;background:var(--white)">
+            <b style="font-family:'STZhongsong','华文中宋',serif;color:var(--clay)">独家反思（本组调研观点）</b>
+            <ul class="dots">
+              <li>保护仍停留在“存档、记录、挂牌”的表层；</li>
+              <li>档案封存少公开、补助落地难持续、研学不成体系；</li>
+              <li>只完成了“抢救记录”，未完成“活态传承”。</li>
+            </ul>
+            <p class="note-soft" style="font-size:12.5px;margin-top:10px">证据来源：2022 年度省级非遗代表性项目补助明细表（第 13 项 · 蔡集手抄草纸制作技艺 · 金额 5 万元）。</p>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: masters -->
+<section id="think">
+  <div class="wrap">
+    <p class="sec-kicker">柒 · 名家新视角</p>
+    <h2 class="sec-title">新时代文化遗产的价值思辨</h2>
+    <div class="sec-rule"></div>
+    <div class="masters">
+      <div class="master">
+        <div class="who"><div class="avatar">冯</div><div><b>冯骥才</b><small>民间文化抢救作家</small></div></div>
+        <blockquote>“非遗不是放进博物馆玻璃柜里的标本，它的生命在于活人的口传手授。”</blockquote>
+        <p class="read">影像档案保存了工序，代替不了史本荣手上的手艺——存档不等于传承。</p>
+      </div>
+      <div class="master dark">
+        <div class="who"><div class="avatar">钱</div><div><b>钱理群</b><small>学者 ·《安顺城记》</small></div></div>
+        <blockquote>“真正的文化自觉，是本地人讲述自己的乡土记忆，把文化阐释权交还土地上的普通人。”</blockquote>
+        <p class="read">我们青少年实地探访、记录访谈，就是在补写被史书漏掉的乡土历史。</p>
+      </div>
+      <div class="master">
+        <div class="who"><div class="avatar">王</div><div><b>王开岭</b><small>作家</small></div></div>
+        <blockquote>“文化是拖时代后腿的那股定力……走得太快，人会丢了灵魂。”</blockquote>
+        <p class="read">现代化求快求利，古法手艺代表耐心与沉淀——传统之意义，在制衡时代的浮躁。</p>
+      </div>
+    </div>
+    <p class="card" style="margin-top:26px;text-align:center;background:var(--paper2);border-color:var(--clay-soft)"><b style="color:var(--clay)">升华：</b>传统文化存在的意义，不是复古怀旧，而是保留民族根脉、制衡时代浮躁——这是乡土手艺给当代的答卷。</p>
+  </div>
+</section>
+
+<!-- SECTION: advice -->
+<section id="advice" style="background:var(--paper2)">
+  <div class="wrap">
+    <p class="sec-kicker">捌 · 青年思考</p>
+    <h2 class="sec-title">给市政府的三条落地建议</h2>
+    <div class="sec-rule"></div>
+    <div class="advice">
+      <div class="row"><div class="zh">壹</div><div>
+        <h4>档案破墙行动</h4>
+        <p>让封存的非遗数字化资料走出文化馆库房：建设线上开放展馆，向学校与公众开放检索、临摹与二次创作，把“死档案”变成“活教材”。</p>
+        <p class="basis">依据：采访获知档案封存现状 + 问卷抽样显示多数居民不了解</p>
+      </div></div>
+      <div class="row"><div class="zh">贰</div><div>
+        <h4>价值重构转型</h4>
+        <p>引导草纸从祭祀用途转向美育宣纸、书画改良用纸与研学载体：联合本地院校试制“蔡集纸”文创，让手艺重新进入现代生活。</p>
+        <p class="basis">依据：费孝通“文化自觉”——认清价值，再寻当代出路</p>
+      </div></div>
+      <div class="row"><div class="zh">叁</div><div>
+        <h4>少年补史行动</h4>
+        <p>将家乡口述史调查纳入综合实践常态课程，建立“宿迁乡土技艺青年档案库”：正史失语的民间记忆，由一代代青少年接力补记。</p>
+        <p class="basis">依据：本次调研全程实践 + 钱理群“阐释权交还普通人”</p>
+      </div></div>
+    </div>
+    <p class="note-soft" style="text-align:center;margin-top:22px;color:var(--clay)">三条建议全部来自本组调查报告与传承人访谈</p>
+  </div>
+</section>
+
+<!-- SECTION: ending -->
+<section id="ending">
+  <div class="wrap">
+    <p class="poem">史书择大事而书，乡土随岁月而隐。<br>
+    有些文明不见经传，却扎根水土百年。<br>
+    我们探寻家乡文化，不止为留住一门手艺，<br>
+    更为补全被历史忽略的民间烟火，<br>
+    <em>为飞速向前的时代，留住一份乡土定力。</em></p>
+    <div class="thanks">谢谢聆听</div>
+  </div>
+</section>
+</main>
+<footer>宿秀一技 · 家乡文化调查实践小组 · 2026</footer>
+
+<script>
+/* SECTION: images runtime assign */
+document.querySelectorAll('[data-image]').forEach(function(img){
+  img.src = img.getAttribute('data-image');
+});
+
+/* SECTION: progress bar (REQ-002) */
+var prog = document.getElementById('progress');
+window.addEventListener('scroll', function(){
+  var h = document.documentElement;
+  var p = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  prog.style.width = p + '%';
+}, {passive:true});
+
+/* SECTION: nav highlight (REQ-001) */
+var links = Array.prototype.slice.call(document.querySelectorAll('#navLinks a'));
+var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+function onScroll(){
+  var y = window.scrollY + 120;
+  var idx = -1;
+  secs.forEach(function(s,i){ if(s && s.offsetTop <= y) idx = i; });
+  links.forEach(function(a,i){ a.classList.toggle('active', i===idx); });
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* SECTION: craft steps (REQ-003) */
+var STEPS = [
+  {t:'沤料', d:'将麦草、蒲花、树皮、麻头分门别类浸入石灰水塘，经数日至一周以上长时间浸泡发酵，使草料软化、纤维分离。'},
+  {t:'舂捣', d:'沤透的草料上石碾反复碾压、捶打，把粗纤维捣碎成泥糊状——这一步全凭经验，捣轻了纤维不散，捣重了纸浆无骨。'},
+  {t:'漂渍', d:'捣好的料浆入清水池反复漂洗，滤去石灰质与杂质，只留下细腻的造纸纤维。'},
+  {t:'调浆', d:'皮料浆与草浆按祖传比例倒入抄纸池，用木棍搅匀——比例不同，成纸的软硬、厚薄便不同。'},
+  {t:'抄纸', d:'双手持竹帘探入池中轻轻一荡，帘上均匀挂起一层纤维膜，一提一落之间，两张湿纸已然成型。'},
+  {t:'贴墙', d:'用棕刷把湿纸"轻轻一掀、快速一刷"贴到刷过白垩土的墙上，借风与日光晒干，揭下叠齐打捆，方成一刀草纸。'}
+];
+var stepsBox = document.getElementById('steps');
+var detail = document.getElementById('stepDetail');
+STEPS.forEach(function(st,i){
+  var el = document.createElement('div');
+  el.className = 'step'; el.setAttribute('role','tab'); el.setAttribute('aria-selected','false'); el.tabIndex = 0;
+  el.innerHTML = '<div class="no">'+(i+1)+'</div><h4>'+st.t+'</h4>';
+  function pick(){
+    document.querySelectorAll('.step').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
+    el.classList.add('on'); el.setAttribute('aria-selected','true');
+    detail.innerHTML = '<h5>第 '+(i+1)+' 道 · '+st.t+'</h5><p>'+st.d+'</p>';
+  }
+  el.addEventListener('click', pick);
+  el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } });
+  stepsBox.appendChild(el);
+});
+stepsBox.children[0].click();
+</script>
+</body>
+</html>
